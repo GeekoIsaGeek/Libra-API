@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, send_from_directory, abort, Blueprint
+from flask import Flask, request, send_from_directory, abort, Blueprint, make_response
 from app.config import Config
 
 main = Blueprint("main", __name__)
@@ -22,16 +22,13 @@ def upload_file():
        return {"error": "No selected file"}, 400
 
    if file and allowed_file(file.filename):
-       file.save(os.path.join(main.config['UPLOAD_FOLDER'], file.filename))
+       file.save(os.path.join(Config.UPLOAD_FOLDER, file.filename))
        return {"message": "File uploaded successfully"}, 200
 
    return {"error": "File not allowed"}, 400
 
 @main.route("/uploads/<filename>", methods=["GET"])
 def get_media(filename):
-    referer = request.headers.get("Referer") or "" 
-
-    if not any(referrer in referer for referrer in Config.ALLOWED_REFERRERS):
-        return abort(403)
+    response = make_response(send_from_directory(Config.UPLOAD_FOLDER, filename))
+    return response
     
-    return send_from_directory(main.config['UPLOAD_FOLDER'], filename)
