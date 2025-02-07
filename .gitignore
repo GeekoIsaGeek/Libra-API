@@ -2,3 +2,5 @@
 .env
 app/__pycache__
 uploads/*
+users.json
+books.json

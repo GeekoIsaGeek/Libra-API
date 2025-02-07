@@ -7,12 +7,19 @@ from werkzeug.security import generate_password_hash
 
 main = Blueprint("main", __name__)
 
+@main.after_request
+def add_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = os.getenv("CLIENT_URL")
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
+
 def allowed_file(filename):
    return "." in filename and filename.rsplit(".", 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 @main.route("/")
 def home():
-    return "Hey jude"
+    return "Heyyo! Do not worry, the service is running smoothly."
 
 @main.route("/upload", methods=["POST"])
 def upload_file():
@@ -32,12 +39,13 @@ def upload_file():
 
 @main.route("/uploads/<filename>", methods=["GET"])
 def get_media(filename):
+    if not os.path.exists(os.path.join(Config.UPLOAD_FOLDER, filename)):
+        return abort(404)
     response = make_response(send_from_directory(Config.UPLOAD_FOLDER, filename))
     return response
     
 
 USERS_FILE = 'users.json'
-
 
 def load_users():
     """Load the users from the JSON file."""
@@ -60,35 +68,23 @@ def save_users(users):
 
 @main.route('/users', methods=['POST'])
 def create_user():
-    """
-    Create a new user.
-    Expected JSON payload:
-    {
-        "username": "exampleuser",
-        "email": "user@example.com",
-        "password": "plain_text_password"
-    }
-    """
     data = request.get_json()
-    if not data:
-        return jsonify({'error': 'No input data provided'}), 400
 
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
     
     required_fields = ['username', 'email', 'password']
     missing_fields = [field for field in required_fields if field not in data]
     if missing_fields:
         return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
-
     
     users = load_users()
 
-    
     for user in users:
         if user['email'] == data['email']:
             return jsonify({'error': 'Email already exists'}), 400
         if user['username'] == data['username']:
             return jsonify({'error': 'Username already exists'}), 400
-
     
     new_user = {
         'id': str(uuid.uuid4()),
@@ -96,12 +92,10 @@ def create_user():
         'email': data['email'],
         'password': generate_password_hash(data['password'])
     }
-
     
     users.append(new_user)
     save_users(users)
 
-    
     user_response = new_user.copy()
     user_response.pop('password')  
 
