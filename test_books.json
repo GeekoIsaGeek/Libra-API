@@ -1,0 +1,291 @@
+[
+	{
+		"id": 1,
+		"title": {
+			"en": "The Catcher in the Rye",
+			"ka": "თამაში ჭვავის ყანაში"
+		},
+		"author": {
+			"en": "J.D. Salinger",
+			"ka": "ჯ.დ. სელინჯერი"
+		},
+		"description": {
+			"en": "The Catcher in the Rye is a novel by J. D. Salinger, partially published in serial form in 1945–1946 and as a novel in 1951. It was originally intended for adults, but is often read by adolescents for its themes of angst and alienation, and as a critique on superficiality in society. It has been translated widely. Around one million copies are sold each year, with total sales of more than 65 million books. The novel's protagonist Holden Caulfield has become an icon for teenage rebellion. The novel also deals with complex issues of innocence, identity, belonging, loss, and connection.",
+			"ka": "თამაში ჭვავის ყანაში არის ჯ. დ. სელინჯერის რომანი, რომელიც ნაწილობრივ გამოქვეყნდა 1945–1946 წლებში და რომელიც რომელიც გამოქვეყნდა 1951 წელს. პირველივე იყო დამჭირებლებისთვის, მაგრამ ხშირად წაიკითხება ა"
+		},
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"year": 1951,
+		"pages": 540,
+		"tags": ["fiction", "novel", "classic", "romance"],
+		"image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg",
+		"slug": "the-cather-in-the-rye-by-salinger",
+		"file": "Rye.pdf"
+	},
+	{
+		"id": 2,
+		"title": {
+			"en": "The Great Gatsby",
+			"ka": "დიდი გეთსბი"
+		},
+		"author": {
+			"en": "F. Scott Fitzgerald",
+			"ka": "ფ. სკოტ ფიცჯერალდი"
+		},
+		"description": {
+			"en": "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan. The novel was inspired by a youthful romance Fitzgerald had with a socialite, and by parties he attended on Long Island's North Shore in 1922. The novel is widely regarded as a critique of the American Dream.",
+			"ka": "დიდი გეტსბი არის 1925 წლის რომანი ამერიკელ მწყემსე F. სკოტ ფიცჯერალდისას. რომელიც დაყვანილია ჯეზის დროში ლონგ აილენდში, ახლოს ნიუ-იორკში, რომელიც ნაწილობრივ აღწერს პირველ პირის ნარატორი ნიკ კარაუეის ინტერაქ"
+		},
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"year": 1925,
+		"pages": 180,
+		"tags": ["fiction", "novel", "classic"],
+		"image": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781524879761/the-great-gatsby-9781524879761_hr.jpg",
+		"slug": "the-great-gatsby-by-fitzgerald"
+	},
+	{
+		"id": 2,
+		"title": {
+			"en": "1984",
+			"ka": "1984"
+		},
+		"author": {
+			"en": "George Orwell",
+			"ka": "ჯორჯ ორუელი"
+		},
+		"description": {
+			"en": "1984 is a dystopian social science fiction novel and cautionary tale, warning about the dangers of totalitarianism and extreme political ideology. The story follows Winston Smith, who struggles against a repressive regime that controls reality.",
+			"ka": "1984 არის დისტოპიური რომანი, რომელიც გვაფრთხილებს ტოტალიტარიზმის საფრთხეებზე. მთავარი გმირი, უინსტონ სმიტი, ცდილობს გაუმკლავდეს სისტემას, რომელიც რეალობას მანიპულირებს."
+		},
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"year": 1949,
+		"pages": 328,
+		"tags": ["fiction", "dystopian", "classic", "political"],
+		"image": "https://i.ebayimg.com/images/g/u6wAAOSwwX1hN7xf/s-l1200.jpg",
+		"slug": "1984-by-orwell"
+	},
+	{
+		"id": 3,
+		"title": {
+			"en": "To Kill a Mockingbird",
+			"ka": "ნუ მოკლავ ჯაფარას"
+		},
+		"author": {
+			"en": "Harper Lee",
+			"ka": "ჰარპერ ლი"
+		},
+		"description": {
+			"en": "To Kill a Mockingbird is a novel about racial injustice and moral growth in the Deep South during the 1930s, seen through the eyes of young Scout Finch. Her father, Atticus Finch, defends a black man falsely accused of a crime.",
+			"ka": "მოციქულის მოკვლა მოგვითხრობს რასობრივ უსამართლობაზე და მორალურ ზრდაზე ამერიკის სამხრეთში. მთავარი პერსონაჟი, სკაუტ ფინჩი, თვალს ადევნებს მის მამას, ატიკუს ფინჩს, რომელიც იცავს ცრუ ბრალდებულ შავკანიანს."
+		},
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"year": 1960,
+		"pages": 281,
+		"tags": ["fiction", "classic", "historical", "social issues"],
+		"image": "https://cdn.britannica.com/21/182021-050-666DB6B1/book-cover-To-Kill-a-Mockingbird-many-1961.jpg",
+		"slug": "to-kill-a-mockingbird-by-harper-lee"
+	},
+	{
+		"id": 4,
+		"title": {
+			"en": "Brave New World",
+			"ka": "დაუბრუნებელი ახალი სამყარო"
+		},
+		"author": {
+			"en": "Aldous Huxley",
+			"ka": "ოლდოს ჰაქსლი"
+		},
+		"description": {
+			"en": "Brave New World is a dystopian novel that explores a future society driven by consumerism, genetic engineering, and state control. It follows Bernard Marx, who begins to question the world around him.",
+			"ka": "დაუბრუნებელი ახალი სამყარო არის დისტოპიური რომანი, რომელიც გვიჩვენებს მომავალს, სადაც საზოგადოება იმართება კონსუმერიზმითა და სახელმწიფო კონტროლით."
+		},
+		"year": 1932,
+		"pages": 311,
+		"tags": ["fiction", "dystopian", "science fiction", "classic"],
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"image": "https://prodimage.images-bn.com/pimages/9780060850524_p0_v4_s1200x630.jpg",
+		"slug": "brave-new-world-by-huxley"
+	},
+	{
+		"id": 5,
+		"title": {
+			"en": "Crime and Punishment",
+			"ka": "დანაშაული და სასჯელი"
+		},
+		"author": {
+			"en": "Fyodor Dostoevsky",
+			"ka": "ფიოდორ დოსტოევსკი"
+		},
+		"description": {
+			"en": "Crime and Punishment is a psychological novel that explores morality, redemption, and the psychological turmoil of Raskolnikov, a young man who commits murder and wrestles with his conscience.",
+			"ka": "დანაშაული და სასჯელი არის ფსიქოლოგიური რომანი, რომელიც აღწერს მორალურ ბრძოლას და გამოსყიდვას. მთავარი გმირი, რასკოლნიკოვი, მკვლელობას სჩადის და ცდილობს გაამართლოს საკუთარი ქმედება."
+		},
+		"year": 1866,
+		"pages": 671,
+		"tags": ["fiction", "classic", "psychological", "philosophy"],
+		"language": {
+			"en": "russian",
+			"ka": "რუსული"
+		},
+		"image": "https://i0.wp.com/fictitiousbookshelf.com/wp-content/uploads/2023/09/IMG_7353.jpeg?fit=595%2C900&ssl=1",
+		"slug": "crime-and-punishment-by-dostoevsky"
+	},
+	{
+		"id": 7,
+		"title": {
+			"en": "Moby-Dick",
+			"ka": "მობი დიკი"
+		},
+		"author": {
+			"en": "Herman Melville",
+			"ka": "ჰერმან მელვილი"
+		},
+		"description": {
+			"en": "Moby-Dick is a novel about obsession, revenge, and fate. It follows Ishmael, a sailor who joins Captain Ahab's quest to hunt the giant white whale, Moby Dick.",
+			"ka": "მობი-დიკი არის რომანი აკვიატებაზე, შურისძიებაზე და ბედზე. მთავარი პერსონაჟი, იშმაელი, უერთდება კაპიტან ახაბის ექსპედიციას, რათა დააპატიმრონ გიგანტური თეთრი ვეშაპი, მობი-დიკი."
+		},
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"year": 1851,
+		"pages": 585,
+		"tags": ["fiction", "classic", "adventure", "sea"],
+		"image": "https://m.media-amazon.com/images/I/71K4OH9CqOL._UF1000,1000_QL80_.jpg",
+		"slug": "moby-dick-by-melville"
+	},
+	{
+		"id": 8,
+		"title": {
+			"en": "One Hundred Years of Solitude",
+			"ka": "მარტოობის ასი წელიწადი"
+		},
+		"author": {
+			"en": "Gabriel García Márquez",
+			"ka": "გაბრიელ გარსია მარკესი"
+		},
+		"description": {
+			"en": "One Hundred Years of Solitude is a multi-generational story of the Buendía family in the fictional town of Macondo, blending magic and reality in a stunning work of magical realism.",
+			"ka": "ასწლიანი მარტოობა მოგვითხრობს ბუენდიების ოჯახის ისტორიას გამოგონილ ქალაქ მაკონდოში, სადაც მაგია და რეალობა ერთმანეთში ირევა."
+		},
+		"language": {
+			"en": "spanish",
+			"ka": "ესპანური"
+		},
+		"year": 1967,
+		"pages": 417,
+		"tags": ["fiction", "classic", "magical realism", "historical"],
+		"image": "https://m.media-amazon.com/images/I/81dy4cfPGuL._AC_UF1000,1000_QL80_.jpg",
+		"slug": "one-hundred-years-of-solitude-by-marquez"
+	},
+	{
+		"id": 9,
+		"title": {
+			"en": "War and Peace",
+			"ka": "ომი და მშვიდობა"
+		},
+		"author": {
+			"en": "Leo Tolstoy",
+			"ka": "ლევ ტოლსტოი"
+		},
+		"description": {
+			"en": "War and Peace is an epic novel that follows the lives of several aristocratic families during the Napoleonic Wars, exploring themes of fate, free will, and history.",
+			"ka": "ომი და მშვიდობა არის ეპიკური რომანი, რომელიც მოგვითხრობს რამდენიმე არისტოკრატიული ოჯახის ცხოვრებას ნაპოლეონის ომების დროს."
+		},
+		"year": 1869,
+		"pages": 1225,
+		"tags": ["fiction", "classic", "historical", "epic"],
+		"language": {
+			"en": "russian",
+			"ka": "რუსული"
+		},
+		"image": "https://m.media-amazon.com/images/I/81W6BFaJJWL.jpg",
+		"slug": "war-and-peace-by-tolstoy"
+	},
+	{
+		"id": 10,
+		"title": {
+			"en": "Frankenstein",
+			"ka": "ფრანკენშტეინი"
+		},
+		"author": {
+			"en": "Mary Shelley",
+			"ka": "მერი შელი"
+		},
+		"description": {
+			"en": "Frankenstein is a gothic novel that explores the consequences of playing god. Victor Frankenstein creates a creature, only to be horrified by his own work, leading to tragedy.",
+			"ka": "ფრანკენშტეინი არის გოთური რომანი, რომელიც განიხილავს ადამიანის ღვთისმოსაობის შედეგებს. ვიქტორ ფრანკენშტეინი ქმნის არსებას, რომელიც შიშისა და ტრაგედიის წყარო ხდება."
+		},
+		"year": 1818,
+		"pages": 280,
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"tags": ["fiction", "classic", "gothic", "horror"],
+		"image": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781982146160/frankenstein-9781982146160_hr.jpg",
+		"slug": "frankenstein-by-shelley"
+	},
+	{
+		"id": 11,
+		"title": {
+			"en": "The Picture of Dorian Gray",
+			"ka": "დორიან გრეის პორტრეტი"
+		},
+		"author": {
+			"en": "Oscar Wilde",
+			"ka": "ოსკარ უაილდი"
+		},
+		"description": {
+			"en": "The Picture of Dorian Gray is a philosophical novel about beauty, morality, and vanity. Dorian Gray remains young while his portrait ages, reflecting his corrupt soul.",
+			"ka": "დორიან გრეის პორტრეტი არის ფილოსოფიური რომანი სილამაზეზე, მორალზე და ამპარტავნობაზე. დორიან გრეი ახალგაზრდად რჩება, ხოლო მისი პორტრეტი ასაკს ატარებს და მის სულის გახრწნას ასახავს."
+		},
+		"year": 1890,
+		"pages": 254,
+		"language": {
+			"en": "english",
+			"ka": "ინგლისური"
+		},
+		"tags": ["fiction", "classic", "philosophical", "gothic"],
+		"image": "https://m.media-amazon.com/images/I/71fm0Ap7JcL._AC_UF1000,1000_QL80_.jpg",
+		"slug": "the-picture-of-dorian-gray-by-wilde"
+	},
+	{
+		"id": 12,
+		"title": {
+			"en": "The Idiot",
+			"ka": "იდიოტი"
+		},
+		"author": {
+			"en": "Fyodor Dostoevsky",
+			"ka": "ფიოდორ დოსტოევსკი"
+		},
+		"description": {
+			"en": "The Idiot is a novel by Fyodor Dostoevsky, first published in 1869. It tells the story of Prince Myshkin, a kind and innocent man who returns to Russian high society after years in a Swiss sanatorium. His honesty and compassion make him stand out, but also make him vulnerable in a world full of deception, greed, and manipulation.",
+			"ka": "იდიოტი არის ფიოდორ დოსტოევსკის რომანი, რომელიც პირველად გამოქვეყნდა 1869 წელს. ის მოგვითხრობს პრინცი მიშკინის ისტორიას — კეთილშობილური და უმანკო ადამიანის, რომელიც შვეიცარიიდან რუსულ მაღალ საზოგადოებაში ბრუნდება. მისი გულწრფელობა და თანაგრძნობა აშკარად გამოირჩევა, მაგრამ ასევე მას დაუცველს ხდის სიცრუითა და სიხარბით სავსე სამყაროში."
+		},
+		"year": 1869,
+		"pages": 667,
+		"tags": ["fiction", "classic", "philosophical", "psychological"],
+		"language": {
+			"en": "russian",
+			"ka": "რუსული"
+		},
+		"image": "https://m.media-amazon.com/images/I/71+1wWoYLJL._AC_UF1000,1000_QL80_.jpg",
+		"slug": "the-idiot-by-dostoevsky"
+	}
+]

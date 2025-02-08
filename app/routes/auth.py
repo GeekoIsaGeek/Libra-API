@@ -9,12 +9,10 @@ auth = Blueprint("auth", __name__)
 @auth.route('/user', methods=['GET'])
 @jwt_required()
 def get_authenticated_user():
-    print("Fetching user data")
     try:
         print(request.headers)
 
         email = get_jwt_identity()
-        print(f"Authenticated user: {email}")
 
         user = load_user(email)
         if user is None:
@@ -26,7 +24,6 @@ def get_authenticated_user():
         return jsonify(user_response), 200
 
     except Exception as e:
-        print(f"Error: {e}")
         return jsonify({'error': 'An error occurred while fetching user data'}), 500
     
 

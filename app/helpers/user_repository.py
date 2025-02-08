@@ -5,13 +5,13 @@ USERS_FILE = 'users.json'
 
 def save_users(users):
     """Save the users to the JSON file."""
-    with open(USERS_FILE, 'w') as file:
-        json.dump(users, file, indent=4)
+    with open(USERS_FILE, 'w', encoding='utf-8') as file:
+        json.dump(users, file, indent=4, ensure_ascii=False)
 
 def load_users():
     """Load the users from the JSON file."""
     if os.path.exists(USERS_FILE):
-        with open(USERS_FILE, 'r') as file:
+        with open(USERS_FILE, 'r', encoding='utf-8') as file:
             try:
                 users = json.load(file)
             except json.JSONDecodeError:
