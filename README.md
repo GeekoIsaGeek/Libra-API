@@ -10,13 +10,13 @@ This repository has been created for the backend app of **Libra** which is going
 git clone git@github.com:Son0fCain/Libra-back.git
 ```
 
-2\. Then you need to create .env file using this command:
+2\. Then you need to add .env file using this command:
 
 ```sh
 cp .env.example .env
 ```
 
-After this, the file will be populated with variables. You just need to set values
+After this, the file will be populated with needed variables. You just need to set values
 
 3\. It's important to set up a virtual environment:
 
