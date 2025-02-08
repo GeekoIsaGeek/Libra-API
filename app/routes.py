@@ -1,10 +1,11 @@
 import os
-from flask import Flask, request, jsonify, send_from_directory, abort, Blueprint, make_response
+from flask import request, jsonify, send_from_directory, abort, Blueprint, make_response
 from app.config import Config
 import uuid
-import json
-from werkzeug.security import generate_password_hash
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt_identity,jwt_required
+from app.extensions import pwd_context
+from app.helpers.validation import allowed_file
+from app.helpers.user_repository import load_user, load_users, save_users
 
 main = Blueprint("main", __name__)
 
@@ -14,9 +15,6 @@ def add_headers(response):
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     return response
-
-def allowed_file(filename):
-   return "." in filename and filename.rsplit(".", 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 @main.route("/")
 def home():
@@ -44,35 +42,30 @@ def get_media(filename):
         return abort(404)
     response = make_response(send_from_directory(Config.UPLOAD_FOLDER, filename))
     return response
+
+@main.route('/user', methods=['GET'])
+@jwt_required()
+def get_authenticated_user():
+    print("Fetching user data")
+    try:
+        print(request.headers)
+
+        email = get_jwt_identity()
+        print(f"Authenticated user: {email}")
+
+        user = load_user(email)
+        if user is None:
+            return jsonify({'error': 'User not found'}), 404
+
+        user_response = user.copy()
+        user_response.pop('password', None)  
+
+        return jsonify(user_response), 200
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'error': 'An error occurred while fetching user data'}), 500
     
-
-USERS_FILE = 'users.json'
-
-def load_user(email):
-    """Load a user by its ID."""
-    users = load_users()
-    for user in users:
-        if user['email'] == email:
-            return user
-    return None
-
-def load_users():
-    """Load the users from the JSON file."""
-    if os.path.exists(USERS_FILE):
-        with open(USERS_FILE, 'r') as file:
-            try:
-                users = json.load(file)
-            except json.JSONDecodeError:
-                users = []
-    else:
-        users = []
-    return users
-
-
-def save_users(users):
-    """Save the users to the JSON file."""
-    with open(USERS_FILE, 'w') as file:
-        json.dump(users, file, indent=4)
 
 @main.route('/login', methods=['POST'])
 def login():
@@ -88,10 +81,10 @@ def login():
 
     user = load_user(data['email'])
 
-    if user is None or not user['password'] == generate_password_hash(data['password']):
+    if user is None or not pwd_context.verify(data['password'], user['password']):
         return jsonify({'error': 'Invalid credentials'}), 400
     
-    access_token = create_access_token(identity=user['username'])
+    access_token = create_access_token(identity=user['email'])
 
     user_response = user.copy()
     user_response.pop('password')
@@ -125,10 +118,10 @@ def create_user():
         'id': str(uuid.uuid4()),
         'username': data['username'],
         'email': data['email'],
-        'password': generate_password_hash(data['password'])
+        'password': pwd_context.hash(data['password'])
     }
 
-    access_token = create_access_token(identity=new_user['username'])
+    access_token = create_access_token(identity=new_user['email'])
     
     users.append(new_user)
     save_users(users)
