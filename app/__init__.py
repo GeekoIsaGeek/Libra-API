@@ -1,6 +1,7 @@
 from flask import Flask
 from app.extensions import jwt
 from app.helpers.book_repository import init_books
+import os
 
 def create_app():
    app = Flask(__name__)
@@ -14,5 +15,7 @@ def create_app():
 
    with app.app_context():
       init_books()
-
+      os.mkdir(app.config['IMAGE_FOLDER']) if not os.path.exists(app.config['IMAGE_FOLDER']) else None
+      os.mkdir(app.config['BOOK_FOLDER']) if not os.path.exists(app.config['BOOK_FOLDER']) else None
+      
    return app

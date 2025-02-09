@@ -3,6 +3,7 @@ from flask import send_from_directory, abort, Blueprint, make_response
 from app.config import Config
 from app.routes.auth import auth
 from app.routes.books import books
+from flask_jwt_extended import jwt_required
 
 main = Blueprint("main", __name__)
 
@@ -21,11 +22,19 @@ def add_headers(response):
 def home():
     return "Heyyo! Do not worry buddy, the service is running smoothly."
 
-@main.route("/uploads/<filename>", methods=["GET"])
+@main.route("/uploads/books/<filename>", methods=["GET"])
 def get_media(filename):
-    if not os.path.exists(os.path.join(Config.UPLOAD_FOLDER, filename)):
+    print(filename)
+    if not os.path.exists(os.path.join(Config.BOOK_FOLDER, filename)):
         return abort(404)
-    response = make_response(send_from_directory(Config.UPLOAD_FOLDER, filename))
+    response = make_response(send_from_directory(Config.BOOK_FOLDER, filename))
+    return response
+
+@main.route("/uploads/images/<filename>", methods=["GET"])
+def get_image(filename):
+    if not os.path.exists(os.path.join(Config.IMAGE_FOLDER, filename)):
+        return abort(404)
+    response = make_response(send_from_directory(Config.IMAGE_FOLDER, filename))
     return response
 
 

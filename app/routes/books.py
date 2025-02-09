@@ -1,21 +1,41 @@
 from flask import Blueprint, request, jsonify
-from app.helpers.book_repository import load_books, save_books
+from app.helpers.book_repository import load_books, save_book, prepare_book, transform_request_data
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from app.helpers.user_repository import load_user
 
 books = Blueprint("books", __name__)
 
-@books.route('/books', methods=['GET'])
-def get_books():
-    """ Get all books. """
-    books = load_books()
-    return jsonify(books)
+@books.route('/books', methods=['GET', 'POST'])
+@jwt_required(optional=True)
+def index():
+    """ Get all books or create a new one. """
+    if request.method == 'GET':
+        books = load_books()
+        return jsonify(books), 200
+    
+    if request.method == 'POST':
+        user = load_user(get_jwt_identity())
+        if not user:
+            return jsonify({'error': 'Authentication required'}), 401
+        
+        if 'image' not in request.files or 'file' not in request.files:
+            return jsonify({'error': 'Missing files'}), 400
+        
+        form_data = transform_request_data(request)
+        
+        if not all(field in form_data for field in ['title', 'author', 'description', 'language', 'year', 'pages', 'tags', 'slug']):
+            return jsonify({'error': 'Missing required fields'}), 400
+        
+        book = prepare_book({**form_data, 'file': request.files['file'], 'image': request.files['image'] }, user['id'])
+        save_book(book)
+
+        return jsonify(book), 201
 
 @books.route('/books/<book_id>', methods=['GET'])
 def get_book(book_id):
     """ Get a single book by ID. """
     books = load_books()
-    book = next((b for b in books if b['id'] == book_id), None)
+    book = next((b for b in books if str(b['id']) == str(book_id)), None)
     if not book:
         return jsonify({'error': 'Book not found'}), 404
     return jsonify(book)
@@ -30,7 +50,7 @@ def update_book(book_id):
         return jsonify({'error': 'Authentication required'}), 401
     
     books = load_books()
-    book = next((b for b in books if b['id'] == book_id), None)
+    book = next((b for b in books if str(b['id']) == str(book_id)), None)
     if not book:
         return jsonify({'error': 'Book not found'}), 404
     
@@ -42,7 +62,7 @@ def update_book(book_id):
         if key in book:
             book[key] = value
     
-    save_books(books)
+    save_book(books, user['id'])
     return jsonify(book)
 
 @books.route('/books/<book_id>', methods=['DELETE'])
@@ -54,7 +74,7 @@ def delete_book(book_id):
         return jsonify({'error': 'Authentication required'}), 401
     
     books = load_books()
-    book = next((b for b in books if b['id'] == book_id), None)
+    book = next((b for b in books if str(b['id']) == str(book_id)), None)
     if not book:
         return jsonify({'error': 'Book not found'}), 404
     
@@ -62,5 +82,5 @@ def delete_book(book_id):
         return jsonify({'error': 'Permission denied'}), 403
     
     books.remove(book)
-    save_books(books)
+    save_book(books, user['id'])
     return jsonify({'message': 'Book deleted'}), 200

@@ -10,11 +10,9 @@ auth = Blueprint("auth", __name__)
 @jwt_required()
 def get_authenticated_user():
     try:
-        print(request.headers)
-
         email = get_jwt_identity()
-
         user = load_user(email)
+        
         if user is None:
             return jsonify({'error': 'User not found'}), 404
 
@@ -25,7 +23,6 @@ def get_authenticated_user():
 
     except Exception as e:
         return jsonify({'error': 'An error occurred while fetching user data'}), 500
-    
 
 @auth.route('/login', methods=['POST'])
 def login():
