@@ -6,5 +6,5 @@ app = create_app()
 CORS(app, resources={r"/*": {"origins": [os.getenv('CLIENT_URL')]}})
 
 if __name__ == "__main__": 
-      app.run(debug=True)
+      app.run()
       

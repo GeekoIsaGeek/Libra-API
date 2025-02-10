@@ -22,7 +22,7 @@
 		"tags": ["fiction", "novel", "classic", "romance"],
 		"image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg",
 		"slug": "the-cather-in-the-rye-by-salinger",
-		"file": "Rye.pdf"
+		"file": "/Rye.pdf"
 	},
 	{
 		"id": 2,
@@ -118,7 +118,8 @@
 			"ka": "ინგლისური"
 		},
 		"image": "https://prodimage.images-bn.com/pimages/9780060850524_p0_v4_s1200x630.jpg",
-		"slug": "brave-new-world-by-huxley"
+		"slug": "brave-new-world-by-huxley",
+		"file": "books/Rye.pdf"
 	},
 	{
 		"id": 5,

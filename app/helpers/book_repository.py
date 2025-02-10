@@ -5,7 +5,6 @@ from flask import jsonify
 from app.config import Config
 from werkzeug.utils import secure_filename
 
-
 BOOKS_FILE = 'books.json'
 INITIAL_BOOKS = 'test_books.json'
 
@@ -28,7 +27,7 @@ def load_books():
 
 def transform_request_data(request):
     """ Transform request data into a dictionary. """
-    data = {
+    form_data = {
         'title': json.loads(request.form.get('title', "{}")),
         'author': json.loads(request.form.get('author', "{}")),
         'description': json.loads(request.form.get('description', "{}")),
@@ -38,29 +37,38 @@ def transform_request_data(request):
         'tags': request.form.get('tags'),
         'slug': request.form.get('slug'),
     }
-    return data
+    return form_data
 
-def prepare_book(form_data, user_id):
-    imagePath = os.path.join(Config.IMAGE_FOLDER, secure_filename(form_data['image'].filename)) 
-    form_data['image'].save(imagePath)
+def prepare_book(form_data, user_id, update=False):
+    """ Prepare book data for saving. """
+    if 'image' in form_data:
+        imagePath = os.path.join(Config.IMAGE_FOLDER, secure_filename(f"{form_data['image'].filename}_{uuid.uuid4()}")) 
+        form_data['image'].save(imagePath)
+        form_data['image'] = imagePath.split('/uploads/')[1]
 
-    bookFilePath = os.path.join(Config.BOOK_FOLDER, secure_filename(form_data['file'].filename))
-    form_data['file'].save(bookFilePath)
+    if 'file' in form_data:
+        bookFilePath = os.path.join(Config.BOOK_FOLDER, secure_filename(f"{form_data['file'].filename}_{uuid.uuid4()}"))
+        form_data['file'].save(bookFilePath)
+        form_data['file'] = bookFilePath.split('/uploads/')[1]
 
-    id = str(uuid.uuid4()) if not "id" in form_data else form_data['id']
-    created_by = user_id if not "created_by" in form_data else form_data['created_by']
+    if not update:
+        id = str(uuid.uuid4()) if not "id" in form_data else form_data['id']
+        created_by = user_id if not "created_by" in form_data else form_data['created_by']
 
-    form_data.update({
-        'id': id,
-        'created_by': created_by,
-        'image': imagePath.split('/uploads')[1],
-        'file': bookFilePath.split('/uploads')[1],
-    })
-    
+        form_data.update({
+            'id': id,
+            'created_by': created_by,
+        })
+        
     return form_data
     
-def save_book(data):
+def save_book(data, update=False):
     """ Save JSON data to a file, extending existing data. """
+    if(update):
+        with open(BOOKS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+        return
+    
     try:
         with open(BOOKS_FILE, 'r', encoding='utf-8') as f:
             existing_data = json.load(f)

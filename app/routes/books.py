@@ -20,9 +20,9 @@ def index():
         
         if 'image' not in request.files or 'file' not in request.files:
             return jsonify({'error': 'Missing files'}), 400
-        
+
         form_data = transform_request_data(request)
-        
+
         if not all(field in form_data for field in ['title', 'author', 'description', 'language', 'year', 'pages', 'tags', 'slug']):
             return jsonify({'error': 'Missing required fields'}), 400
         
@@ -49,21 +49,28 @@ def update_book(book_id):
     if not user:
         return jsonify({'error': 'Authentication required'}), 401
     
+    form_data = transform_request_data(request)
+
+    if 'file' in request.files:
+        form_data['file'] = request.files['file']
+    if 'image' in request.files:
+        form_data['image'] = request.files['image']
+
+    prepared_book = prepare_book(form_data, user['id'], update=True)
     books = load_books()
-    book = next((b for b in books if str(b['id']) == str(book_id)), None)
-    if not book:
-        return jsonify({'error': 'Book not found'}), 404
-    
-    if book['created_by'] != user['id']:
-        return jsonify({'error': 'Permission denied'}), 403
-    
-    data = request.get_json()
-    for key, value in data.items():
-        if key in book:
-            book[key] = value
-    
-    save_book(books, user['id'])
-    return jsonify(book)
+
+    updated_book = {}
+
+    for i, book in enumerate(books):
+        if str(book['id']) == str(book_id):
+            if book['created_by'] != user['id']:
+                return jsonify({'error': 'Permission denied'}), 403     
+            updated_book = {**book, **prepared_book}
+            books[i] = updated_book 
+            break
+
+    save_book(books, update=True)
+    return jsonify(updated_book), 200
 
 @books.route('/books/<book_id>', methods=['DELETE'])
 @jwt_required()

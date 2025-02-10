@@ -3,7 +3,6 @@ from flask import send_from_directory, abort, Blueprint, make_response
 from app.config import Config
 from app.routes.auth import auth
 from app.routes.books import books
-from flask_jwt_extended import jwt_required
 
 main = Blueprint("main", __name__)
 
