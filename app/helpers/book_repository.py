@@ -62,9 +62,10 @@ def prepare_book(form_data, user_id, update=False):
         
     return form_data
     
-def save_book(data, update=False):
+def save_book(data, extend=False):
     """ Save JSON data to a file, extending existing data. """
-    if(update):
+    """ The only case where extend is set to True is when we creating a new book. """
+    if(not extend):
         with open(BOOKS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
         return

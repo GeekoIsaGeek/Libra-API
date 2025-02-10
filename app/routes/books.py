@@ -27,7 +27,7 @@ def index():
             return jsonify({'error': 'Missing required fields'}), 400
         
         book = prepare_book({**form_data, 'file': request.files['file'], 'image': request.files['image'] }, user['id'])
-        save_book(book)
+        save_book(book, extend=True)
 
         return jsonify(book), 201
 
@@ -44,7 +44,6 @@ def get_book(book_id):
 @jwt_required()
 def update_book(book_id):
     """ Update a book (only the creator can update). """
-
     user = load_user(get_jwt_identity())
     if not user:
         return jsonify({'error': 'Authentication required'}), 401
@@ -69,7 +68,7 @@ def update_book(book_id):
             books[i] = updated_book 
             break
 
-    save_book(books, update=True)
+    save_book(books)
     return jsonify(updated_book), 200
 
 @books.route('/books/<book_id>', methods=['DELETE'])
@@ -89,5 +88,5 @@ def delete_book(book_id):
         return jsonify({'error': 'Permission denied'}), 403
     
     books.remove(book)
-    save_book(books, user['id'])
+    save_book(books)
     return jsonify({'message': 'Book deleted'}), 200
