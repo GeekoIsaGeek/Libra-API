@@ -1,9 +1,9 @@
 import os
 import json
 import uuid
-from flask import jsonify
 from app.config import Config
 from werkzeug.utils import secure_filename
+import time
 
 BOOKS_FILE = 'books.json'
 INITIAL_BOOKS = 'test_books.json'
@@ -42,12 +42,12 @@ def transform_request_data(request):
 def prepare_book(form_data, user_id, update=False):
     """ Prepare book data for saving. """
     if 'image' in form_data:
-        imagePath = os.path.join(Config.IMAGE_FOLDER, secure_filename(f"{form_data['image'].filename}_{uuid.uuid4()}")) 
+        imagePath = os.path.join(Config.IMAGE_FOLDER, secure_filename(f"{int(time.time())}_{form_data['image'].filename}")) 
         form_data['image'].save(imagePath)
         form_data['image'] = imagePath.split('/uploads/')[1]
 
     if 'file' in form_data:
-        bookFilePath = os.path.join(Config.BOOK_FOLDER, secure_filename(f"{form_data['file'].filename}_{uuid.uuid4()}"))
+        bookFilePath = os.path.join(Config.BOOK_FOLDER, secure_filename(f"{int(time.time())}_{form_data['file'].filename}"))
         form_data['file'].save(bookFilePath)
         form_data['file'] = bookFilePath.split('/uploads/')[1]
 
