@@ -1,6 +1,6 @@
 # Libra
 
-This repository has been created for the backend app of **Libra** which is going to be the yet another E-library app built using Flask and [Vue](https://github.com/GeekoIsaGeek/libra-front).
+Simple API for the **Libra** project
 
 ## A brief guide on how to set up and run this project locally
 
