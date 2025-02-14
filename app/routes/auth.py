@@ -1,8 +1,9 @@
 from flask import Blueprint,request,jsonify
-import uuid
 from flask_jwt_extended import create_access_token, get_jwt_identity,jwt_required
 from app.extensions import pwd_context
-from app.helpers.user_repository import load_user, load_users, save_users
+from app.models import User
+from sqlalchemy import or_
+from app.models import db
 
 auth = Blueprint("auth", __name__)
 
@@ -11,15 +12,14 @@ auth = Blueprint("auth", __name__)
 def get_authenticated_user():
     try:
         email = get_jwt_identity()
-        user = load_user(email)
+        user = User.query.filter_by(email=email).first().to_dict()
         
         if user is None:
             return jsonify({'error': 'User not found'}), 404
 
-        user_response = user.copy()
-        user_response.pop('password', None)  
+        del user['password']
 
-        return jsonify(user_response), 200
+        return jsonify(user), 200
 
     except Exception as e:
         return jsonify({'error': 'An error occurred while fetching user data'}), 500
@@ -36,18 +36,15 @@ def login():
     if missing_fields:
         return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
 
-    user = load_user(data['email'])
+    user = User.query.filter_by(email=data['email']).first().to_dict()
 
     if user is None or not pwd_context.verify(data['password'], user['password']):
         return jsonify({'error': 'Invalid credentials'}), 400
     
     access_token = create_access_token(identity=user['email'])
 
-    user_response = user.copy()
-    user_response.pop('password')
-
     return jsonify({
-        'user': user_response,
+        'user': user,
         'access_token': access_token
     }), 200
 
@@ -59,34 +56,32 @@ def create_user():
         return jsonify({'error': 'No data provided'}), 400
     
     required_fields = ['username', 'email', 'password']
+
     missing_fields = [field for field in required_fields if field not in data]
     if missing_fields:
         return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
     
-    users = load_users()
+    user = User.query.filter(or_(User.username == data['username'], User.email == data['email'])).first()
 
-    for user in users:
-        if user['email'] == data['email']:
-            return jsonify({'error': 'Email already exists'}), 400
-        if user['username'] == data['username']:
-            return jsonify({'error': 'Username already exists'}), 400
+    if user:
+        return jsonify({'error': 'User with provided email or username already exists!'}), 400
     
-    new_user = {
-        'id': str(uuid.uuid4()),
-        'username': data['username'],
-        'email': data['email'],
-        'password': pwd_context.hash(data['password'])
-    }
+    new_user = User(
+        username=data['username'],
+        email=data['email'],
+        password=pwd_context.hash(data['password'])
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    new_user = new_user.to_dict()
+
+    del new_user['password']
 
     access_token = create_access_token(identity=new_user['email'])
-    
-    users.append(new_user)
-    save_users(users)
-
-    user_response = new_user.copy()
-    user_response.pop('password')  
 
     return jsonify({
-        'user': user_response,
+        'user': new_user,
         'access_token': access_token
     }), 201

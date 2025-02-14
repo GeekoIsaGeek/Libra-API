@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
-from app.helpers.book_repository import load_books, save_book, prepare_book, transform_request_data
+from app.helpers.book import load_books, save_book, prepare_book, transform_request_data
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from app.helpers.user_repository import load_user
+from app.models import User
 
 books = Blueprint("books", __name__)
 
@@ -14,7 +14,7 @@ def index():
         return jsonify(books), 200
     
     if request.method == 'POST':
-        user = load_user(get_jwt_identity())
+        user = User.query.filter_by(email=get_jwt_identity()).first().to_dict()
         if not user:
             return jsonify({'error': 'Authentication required'}), 401
         

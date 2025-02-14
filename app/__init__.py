@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from app.extensions import jwt
-from app.helpers.book_repository import init_books
+from app.helpers.book import init_books
 from app.routes.main import main
 from app.models import db
 from flask_migrate import Migrate
