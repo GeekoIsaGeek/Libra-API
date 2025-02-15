@@ -7,7 +7,7 @@ REST API for an e-library application, developed as part of the university proje
 1\. First you need to clone this repository:
 
 ```sh
-git clone git@github.com:Son0fCain/Libra-back.git
+git clone git@github.com:GeekoIsaGeek/Libra-API.git
 ```
 
 2\. Then you need to add .env file using this command:
