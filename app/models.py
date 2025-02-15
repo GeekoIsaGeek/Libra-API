@@ -28,10 +28,10 @@ class Book(db.Model):
    language = db.Column(db.JSON, nullable=False)
    year = db.Column(db.Integer, nullable=False)
    pages = db.Column(db.Integer, nullable=False)
-   tags = db.Column(db.JSON, nullable=False)
+   tags = db.Column(db.String(250), nullable=False)
    image = db.Column(db.String(120), nullable=False)
    slug = db.Column(db.String(120), nullable=False)
-   file = db.Column(db.String(120), nullable=False)
+   file = db.Column(db.String(120), nullable=True)
    created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
@@ -45,7 +45,7 @@ class Book(db.Model):
            'language': json.loads(self.language),
            'year': self.year,
            'pages': self.pages,
-           'tags': json.loads(self.tags),
+           'tags': self.tags,
            'image': self.image,
            'slug': self.slug,
            'file': self.file,

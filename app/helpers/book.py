@@ -1,37 +1,33 @@
 import os
 import json
-import uuid
 from app.config import Config
 from werkzeug.utils import secure_filename
+from app.models import db, Book
 import time
 
-BOOKS_FILE = 'books.json'
 INITIAL_BOOKS = 'test_books.json'
 
 def init_books():
-   """ Initialize the books file with some data. """
-   if not os.path.exists(BOOKS_FILE):
+    if Book.query.count() == 0:
       with open(INITIAL_BOOKS, 'r', encoding='utf-8') as f:
-            books = json.load(f)
-            save_book(books)
+            books = json.load(f)  
+            for book in books:
+                book = {**book,  
+                    'title':json.dumps(book['title']), 
+                    'author':json.dumps(book['author']), 
+                    'description':json.dumps(book['description']), 
+                    'language': json.dumps(book['language'])
+                }
+                db.session.add(Book(**book))
+            db.session.commit()         
 
-def load_books():
-    """ Load JSON data from a file. """
-    if os.path.exists(BOOKS_FILE):
-        with open(BOOKS_FILE, 'r', encoding='utf-8') as f:
-            try:
-                return json.load(f)
-            except json.JSONDecodeError:
-                return []
-    return []
-
-def transform_request_data(request):
+def collect_request_data(request):
     """ Transform request data into a dictionary. """
     form_data = {
-        'title': json.loads(request.form.get('title', "{}")),
-        'author': json.loads(request.form.get('author', "{}")),
-        'description': json.loads(request.form.get('description', "{}")),
-        'language': json.loads(request.form.get('language',"{}")),
+        'title': request.form.get('title'),
+        'author': request.form.get('author'),
+        'description': request.form.get('description'),
+        'language': request.form.get('language'),
         'year': request.form.get('year'),
         'pages': request.form.get('pages'),
         'tags': request.form.get('tags'),
@@ -52,31 +48,11 @@ def prepare_book(form_data, user_id, update=False):
         form_data['file'] = bookFilePath.split('/uploads/')[1]
 
     if not update:
-        id = str(uuid.uuid4()) if not "id" in form_data else form_data['id']
         created_by = user_id if not "created_by" in form_data else form_data['created_by']
 
         form_data.update({
-            'id': id,
             'created_by': created_by,
         })
         
     return form_data
     
-def save_book(data, extend=False):
-    """ Save JSON data to a file, extending existing data. """
-    """ The only case where extend is set to True is when we creating a new book. """
-    if(not extend):
-        with open(BOOKS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
-        return
-    
-    try:
-        with open(BOOKS_FILE, 'r', encoding='utf-8') as f:
-            existing_data = json.load(f)
-    except FileNotFoundError:
-        existing_data = []
-
-    existing_data.append(data)
-
-    with open(BOOKS_FILE, 'w', encoding='utf-8') as f:
-        json.dump(existing_data, f, indent=4, ensure_ascii=False)

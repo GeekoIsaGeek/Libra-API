@@ -24,6 +24,6 @@ def create_app():
 
       db.create_all()
       
-      # init_books()
+      init_books()
       
    return app

@@ -1,6 +1,5 @@
 [
 	{
-		"id": 1,
 		"title": {
 			"en": "The Catcher in the Rye",
 			"ka": "თამაში ჭვავის ყანაში"
@@ -19,13 +18,12 @@
 		},
 		"year": 1951,
 		"pages": 540,
-		"tags": ["fiction", "novel", "classic", "romance"],
+		"tags": "fiction,novel,classic,romance",
 		"image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg",
 		"slug": "the-cather-in-the-rye-by-salinger",
 		"file": "/Rye.pdf"
 	},
 	{
-		"id": 2,
 		"title": {
 			"en": "The Great Gatsby",
 			"ka": "დიდი გეთსბი"
@@ -44,12 +42,11 @@
 		},
 		"year": 1925,
 		"pages": 180,
-		"tags": ["fiction", "novel", "classic"],
+		"tags": "fiction,novel,classic,romance",
 		"image": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781524879761/the-great-gatsby-9781524879761_hr.jpg",
 		"slug": "the-great-gatsby-by-fitzgerald"
 	},
 	{
-		"id": 2,
 		"title": {
 			"en": "1984",
 			"ka": "1984"
@@ -68,12 +65,11 @@
 		},
 		"year": 1949,
 		"pages": 328,
-		"tags": ["fiction", "dystopian", "classic", "political"],
+		"tags": "fiction, dystopian, science fiction, classic",
 		"image": "https://i.ebayimg.com/images/g/u6wAAOSwwX1hN7xf/s-l1200.jpg",
 		"slug": "1984-by-orwell"
 	},
 	{
-		"id": 3,
 		"title": {
 			"en": "To Kill a Mockingbird",
 			"ka": "ნუ მოკლავ ჯაფარას"
@@ -92,12 +88,11 @@
 		},
 		"year": 1960,
 		"pages": 281,
-		"tags": ["fiction", "classic", "historical", "social issues"],
+		"tags": "fiction,classic,hystorical",
 		"image": "https://cdn.britannica.com/21/182021-050-666DB6B1/book-cover-To-Kill-a-Mockingbird-many-1961.jpg",
 		"slug": "to-kill-a-mockingbird-by-harper-lee"
 	},
 	{
-		"id": 4,
 		"title": {
 			"en": "Brave New World",
 			"ka": "დაუბრუნებელი ახალი სამყარო"
@@ -112,7 +107,7 @@
 		},
 		"year": 1932,
 		"pages": 311,
-		"tags": ["fiction", "dystopian", "science fiction", "classic"],
+		"tags": "fiction,dystopian,science fiction,classic",
 		"language": {
 			"en": "english",
 			"ka": "ინგლისური"
@@ -122,7 +117,6 @@
 		"file": "books/Rye.pdf"
 	},
 	{
-		"id": 5,
 		"title": {
 			"en": "Crime and Punishment",
 			"ka": "დანაშაული და სასჯელი"
@@ -137,7 +131,7 @@
 		},
 		"year": 1866,
 		"pages": 671,
-		"tags": ["fiction", "classic", "psychological", "philosophy"],
+		"tags": "fiction,classic,psychological,philosophy",
 		"language": {
 			"en": "russian",
 			"ka": "რუსული"
@@ -146,7 +140,6 @@
 		"slug": "crime-and-punishment-by-dostoevsky"
 	},
 	{
-		"id": 7,
 		"title": {
 			"en": "Moby-Dick",
 			"ka": "მობი დიკი"
@@ -165,12 +158,11 @@
 		},
 		"year": 1851,
 		"pages": 585,
-		"tags": ["fiction", "classic", "adventure", "sea"],
+		"tags": "fiction,classic,adventure,sea",
 		"image": "https://m.media-amazon.com/images/I/71K4OH9CqOL._UF1000,1000_QL80_.jpg",
 		"slug": "moby-dick-by-melville"
 	},
 	{
-		"id": 8,
 		"title": {
 			"en": "One Hundred Years of Solitude",
 			"ka": "მარტოობის ასი წელიწადი"
@@ -189,12 +181,11 @@
 		},
 		"year": 1967,
 		"pages": 417,
-		"tags": ["fiction", "classic", "magical realism", "historical"],
+		"tags": "fiction,classic,magical realism,historical",
 		"image": "https://m.media-amazon.com/images/I/81dy4cfPGuL._AC_UF1000,1000_QL80_.jpg",
 		"slug": "one-hundred-years-of-solitude-by-marquez"
 	},
 	{
-		"id": 9,
 		"title": {
 			"en": "War and Peace",
 			"ka": "ომი და მშვიდობა"
@@ -209,7 +200,7 @@
 		},
 		"year": 1869,
 		"pages": 1225,
-		"tags": ["fiction", "classic", "historical", "epic"],
+		"tags": "fiction,classic,historical,epic",
 		"language": {
 			"en": "russian",
 			"ka": "რუსული"
@@ -218,7 +209,6 @@
 		"slug": "war-and-peace-by-tolstoy"
 	},
 	{
-		"id": 10,
 		"title": {
 			"en": "Frankenstein",
 			"ka": "ფრანკენშტეინი"
@@ -237,12 +227,11 @@
 			"en": "english",
 			"ka": "ინგლისური"
 		},
-		"tags": ["fiction", "classic", "gothic", "horror"],
+		"tags": "fiction,classic,gothic,horror",
 		"image": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781982146160/frankenstein-9781982146160_hr.jpg",
 		"slug": "frankenstein-by-shelley"
 	},
 	{
-		"id": 11,
 		"title": {
 			"en": "The Picture of Dorian Gray",
 			"ka": "დორიან გრეის პორტრეტი"
@@ -261,12 +250,11 @@
 			"en": "english",
 			"ka": "ინგლისური"
 		},
-		"tags": ["fiction", "classic", "philosophical", "gothic"],
+		"tags": "fiction,classic,philosophical,gothic",
 		"image": "https://m.media-amazon.com/images/I/71fm0Ap7JcL._AC_UF1000,1000_QL80_.jpg",
 		"slug": "the-picture-of-dorian-gray-by-wilde"
 	},
 	{
-		"id": 12,
 		"title": {
 			"en": "The Idiot",
 			"ka": "იდიოტი"
@@ -281,7 +269,7 @@
 		},
 		"year": 1869,
 		"pages": 667,
-		"tags": ["fiction", "classic", "philosophical", "psychological"],
+		"tags": "fiction,classic,philosophical,psychological",
 		"language": {
 			"en": "russian",
 			"ka": "რუსული"

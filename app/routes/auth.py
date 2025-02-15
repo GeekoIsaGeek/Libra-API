@@ -69,7 +69,7 @@ def create_user():
     new_user = User(
         username=data['username'],
         email=data['email'],
-        password=pwd_context.hash(data['password'])
+        password=pwd_context.hash(data['password']),
     )
 
     db.session.add(new_user)
