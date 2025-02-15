@@ -1,6 +1,6 @@
 # Libra
 
-Simple API for the **Libra** project
+REST API for an e-library application, developed as part of the university project. It provides features for managing digital books and user authentication. Built with Flask and Vue.
 
 ## A brief guide on how to set up and run this project locally
 
@@ -35,7 +35,20 @@ If the first command fails on Windows, run python without 3 at the end
 pip install -r requirements.txt
 ```
 
-5\. Lastly you should use any of these two commands to run a local server:
+5\. After that, run database migrations to set up the initial schema:
+
+```sh
+flask db upgrade
+```
+
+If migrations are missing, run:
+
+```sh
+flask db migrate -m "Initial migration"
+flask db upgrade
+```
+
+6\. Lastly you should use any of these two commands to run a local server:
 
 ```sh
 either `flask run` or `python3 app.py`

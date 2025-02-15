@@ -23,7 +23,6 @@ def home():
 
 @main.route("/uploads/books/<filename>", methods=["GET"])
 def get_media(filename):
-    print(filename)
     if not os.path.exists(os.path.join(Config.BOOK_FOLDER, filename)):
         return abort(404)
     response = make_response(send_from_directory(Config.BOOK_FOLDER, filename))
